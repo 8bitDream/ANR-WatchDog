@@ -26,6 +26,7 @@ package com.github.anrwatchdog;
 import android.os.Debug;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Process;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -248,6 +249,7 @@ public class ANRWatchDog extends Thread {
     @SuppressWarnings("NonAtomicOperationOnVolatileField")
     @Override
     public void run() {
+        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
         setName("|ANR-WatchDog|");
 
         long interval = _timeoutInterval;
